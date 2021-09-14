@@ -1,7 +1,12 @@
 import { Request, Response, NextFunction } from 'express'
 import StudentModel from '../models/Student'
+import GenerateHash from '../services/GenerateHash'
+import { SendForgotPasswordMail } from '../middleware/Mailer'
 
-export const getStudentDetails = (
+
+
+
+export const GetStudentDetails = (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -30,7 +35,7 @@ export const getStudentDetails = (
     })
 }
 
-export const changeFoodCourt = (
+export const ChangeFoodCourt = (
   req: any,
   res: Response,
   next: NextFunction,
@@ -63,7 +68,7 @@ export const changeFoodCourt = (
     })
 }
 
-export const verifyStudentAccount = (
+export const VerifyStudentAccount = (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -96,7 +101,7 @@ export const verifyStudentAccount = (
     })
 }
 
-export const checkIfTokenExists = (
+export const CheckIfTokenExists = (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -125,13 +130,50 @@ export const checkIfTokenExists = (
 }
 
 //sending the email;
-export const forgotPassword = (
+export const ForgotPassword = (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {}
+) => {
+  const { email } = req.body
+  if (!email) {
+    return res.status(500).json({
+      success: false,
+      message: 'Required values not provided!',
+    })
+  }
+  StudentModel.findOne({ learnerId: email })
+    .then((student) => {
+      const hash = GenerateHash(20)
+      student.emailVerificationToken = hash
+      SendForgotPasswordMail(email, hash)
+      student
+        .save()
+        .then((s) => {
+          return res.status(200).json({
+            success: true,
+          })
+        })
+        .catch((err) => {
+          console.log('ERROR')
+          console.log(err)
+          return res.status(500).json({
+            success: false,
+            message: 'Unknown server error!',
+          })
+        })
+    })
+    .catch((err) => {
+      console.log('ERROR')
+      console.log(err)
+      return res.status(500).json({
+        success: false,
+        message: 'Unknown server error!',
+      })
+    })
+}
 
-export const resetPassword = async (
+export const ResetPassword = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -164,7 +206,7 @@ export const resetPassword = async (
     })
 }
 
-export const checkIfStudentVerified = (
+export const CheckIfStudentVerified = (
   req: any,
   res: Response,
   next: NextFunction,

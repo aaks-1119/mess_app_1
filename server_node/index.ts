@@ -5,6 +5,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const AuthRoutes = require('./routes/Auth')
+const StudentRoutes = require('./routes/Student')
 
 const app = express()
 
@@ -71,6 +73,8 @@ mongoose
         message: 'Welcome to my API',
       })
     })
+    app.use('/api/auth',AuthRoutes);
+    app.use('/api/student',StudentRoutes);
 
     const PORT = process.env.PORT || 8080
     app.listen(PORT, () => {
