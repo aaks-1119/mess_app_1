@@ -8,11 +8,11 @@ const router = express.Router()
 router.get('/get-student-details',CheckJWT,Controller.GetStudentDetails);
 router.put("/change-food-court",CheckJWT,Controller.ChangeFoodCourt);
 router.get('/verify-student-account/:emailVerificationToken',Controller.VerifyStudentAccount);
-router.get("/check-if-token-exists/:token",Controller.CheckIfTokenExists);
+router.get("/check-if-token-exists/:token",Controller.CheckIfResetPasswordTokenExists);
 router.post('/forgot-password',Controller.ForgotPassword);
 router.put("/reset-password",CheckJWT,Controller.ResetPassword);
 router.get('/check-if-student-verified',CheckJWT,Controller.CheckIfStudentVerified)
-
+    
 
 
 

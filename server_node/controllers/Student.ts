@@ -101,7 +101,7 @@ export const VerifyStudentAccount = (
     })
 }
 
-export const CheckIfTokenExists = (
+export const CheckIfResetPasswordTokenExists = (
   req: Request,
   res: Response,
   next: NextFunction,
