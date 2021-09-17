@@ -1,4 +1,4 @@
-import express from 'express'
+const express =require('express');
 import * as Controller from '../controllers/Schedule'
 import CheckJWT from '../middleware/Auth'
 
@@ -12,4 +12,4 @@ router.get(
   Controller.GetScheduleDetails,
 )
 
-export default router
+export {router as ScheduleRoutes}

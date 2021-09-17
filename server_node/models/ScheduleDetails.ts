@@ -20,6 +20,7 @@ export interface ScheduleDetailsDoc extends mongoose.Document {
 
 const ScheduleDetailsSchema = new Schema({
   active: {
+    type:Boolean,
     required: true,
     default: true,
   },

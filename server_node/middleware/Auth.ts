@@ -1,5 +1,5 @@
 import { NextFunction, Response } from 'express'
-import jwt from 'jsonwebtoken'
+const jwt = require('jsonwebtoken');
 
 const CheckJWT =  (req: any, res: Response, next: NextFunction) =>{
   // get token from the header

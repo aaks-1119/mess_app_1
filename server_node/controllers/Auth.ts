@@ -1,7 +1,7 @@
 import StudentModel, { StudentDoc } from '../models/Student'
 import { Request, Response, NextFunction } from 'express'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 import GenerateHash from '../services/GenerateHash'
 import {SendWelcomeMail} from '../middleware/Mailer'
 

@@ -7,6 +7,10 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const AuthRoutes = require('./routes/Auth')
 const StudentRoutes = require('./routes/Student')
+const AppFeedbackRoutes = require('./routes/AppFeedback');
+const FoodCourtRoutes = require('./routes/FoodCourt');
+const FoodCourtFeedbackRoutes = require('./routes/FoodCourtFeedback');
+const ScheduleRoutes = require('./routes/Schedule');
 
 const app = express()
 
@@ -73,8 +77,15 @@ mongoose
         message: 'Welcome to my API',
       })
     })
-    app.use('/api/auth',AuthRoutes);
-    app.use('/api/student',StudentRoutes);
+    app.use('/api/auth',AuthRoutes.AuthRoutes);
+    app.use('/api/student',StudentRoutes.StudentRoutes);
+    app.use('/api/app-feedback',AppFeedbackRoutes.AppFeedbackRoutes);
+    app.use('/api/food-court',FoodCourtRoutes.FoodCourtRoutes);
+    app.use('/api/food-court-feedback',FoodCourtFeedbackRoutes.FoodCourtFeedbackRoutes);
+    app.use('/api/schedule',ScheduleRoutes.ScheduleRoutes);
+    
+
+
 
     const PORT = process.env.PORT || 8080
     app.listen(PORT, () => {

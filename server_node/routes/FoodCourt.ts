@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express');
 import * as Controller from '../controllers/FoodCourt'
 import CheckJWT from '../middleware/Auth'
 
@@ -21,4 +21,4 @@ router.put(
   Controller.ChangeFoodCourtSchedule,
 )
 
-export default router
+export  {router as FoodCourtRoutes}

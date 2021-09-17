@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+const nodemailer =require('nodemailer');
 
 const email: string = process.env.GMAIL_EMAIL
 const password: string = process.env.GMAIL_PASSWORD

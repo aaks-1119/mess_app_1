@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express');
 import CheckJWT from '../middleware/Auth'
 import * as Controller from '../controllers/FoodCourtFeedback'
 const router = express.Router()
@@ -16,4 +16,4 @@ router.get(
   Controller.GetAllFeedbacksForFoodCourt,
 )
 
-export default router
+export {router as FoodCourtFeedbackRoutes}
